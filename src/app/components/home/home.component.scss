@@ -1,0 +1,46 @@
+.container {
+    // width: 100%;
+    // box-sizing: border-box;
+}
+
+.range-dropdown {
+    border: none;
+    font-size: 1rem;
+}
+
+.task-list {
+    margin: 45px 0px;
+    font-size: 2rem;
+}
+
+.info-bar {
+    max-width: 50%;
+    display: flex;
+    flex-direction: row;
+    // justify-content: center;
+    margin: 50px auto;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.info-bar>p {
+    display: flex;
+    align-items: center;
+
+}
+
+.date {
+    text-align: center;
+    font-size: 18px;
+}
+
+.greeting {
+    text-align: center;
+    font-size: 26px;
+}
+
+.icon {
+    font-size: 24px;
+    margin-right: 6px;
+}

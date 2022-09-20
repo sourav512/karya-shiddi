@@ -1,0 +1,7 @@
+<div class="container">
+    <span class="dashboard-name">{{heading}}</span><span style="font-size: 12px;">(next 3 days high priority)</span><i
+        class="fa-solid fa-circle-plus" style="color: green;cursor: pointer;" (click)="changeModalView()"></i>
+    <div *ngFor="let taskItem of taskList">
+        <app-task [item]="taskItem"></app-task>
+    </div>
+</div>
