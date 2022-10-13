@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { MyTaskComponent } from './my-task/my-task.component';
+import { MyTaskComponent } from './components/my-task/my-task.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: false } // <-- debugging purposes only
     )
   ],
   exports: [RouterModule]

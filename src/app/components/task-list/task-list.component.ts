@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Task } from 'src/app/models/Task';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -7,35 +8,31 @@ import { Task } from 'src/app/models/Task';
   styleUrls: ['./task-list.component.scss']
 })
 export class TaskListComponent implements OnInit {
-  @Output() toggleShowModal = new EventEmitter<boolean>;
-  constructor() { }
+  // @Output() toggleShowModal = new EventEmitter<boolean>;
+  @Output() taskCount = new EventEmitter<any>;
+  showModal: boolean = false;
   @Input() heading: any;
+  @Input() subHeading!: string;
+
+
+  constructor(private taskService: TaskService) { }
+
   ngOnInit(): void {
+    this.getData()
   }
-  taskList: Task[] = [{
-    title: 'Complete budgeting for FY 2023',
-    description: 'Budgeting for FY 2023. This is required by the Finance department. A further longer description Is possible',
-    priority: 2,
-    date: new Date(),
-    isCompleted: false
-  }, {
-    title: 'Complete budgeting for FY 2023',
-    description: 'Budgeting for FY 2023. This is required by the Finance department. A further longer description Is possible.  This is required by the Finance department. A further longer description Is possible',
-    priority: 1,
-    date: new Date(),
-    isCompleted: true
-  }, {
-    title: 'this is a title text',
-    description: 'Budgeting for FY 2023.   ',
-    priority: 3,
-    date: new Date(),
-    isCompleted: false
-  }];
 
+  taskList: any;
+  inCompleteAndCompleteTask = {}
 
-
-  changeModalView() {
-    this.toggleShowModal.emit()
+  getData() {
+    this.taskService.getTask().subscribe((task) => {
+      this.taskList = task;
+      this.inCompleteAndCompleteTask = {
+        totalTask: this.taskList.length,
+        completedTask: this.taskList.filter((singleTask: Task) => singleTask.isCompleted == true).length
+      }
+      this.taskCount.emit(this.inCompleteAndCompleteTask);
+    })
   }
 
 }

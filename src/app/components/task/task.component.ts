@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { tick } from '@angular/core/testing';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Task } from 'src/app/models/Task';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task',
@@ -9,17 +9,30 @@ import { Task } from 'src/app/models/Task';
 })
 export class TaskComponent implements OnInit {
 
-  // @Input() item: Task = { title: "", description: "", date: new Date(), priority: 1 };
-  @Input() item: Task = { title: "", description: "", date: new Date(), priority: 1, isCompleted: true };
-  // @Input() item: Task = {};
+  @Input() item!: Task;
+  @Output() updateTaskData = new EventEmitter<any>();
 
-  // date = this.item.date;
-  constructor() {
+  constructor(private taskService: TaskService) {
+
+  }
+
+  markTaskAsComplete() {
+    this.taskService.updateTaskStatus(this.item.id).subscribe(
+      data => {
+        this.updateTaskData.emit()
+      }
+    );
   }
 
 
-  priorityIcon: string[] = ['down', 'right', 'up'];
+  priorityIcons: { [key: string]: string } = {
+    "1": "down",
+    "2": "right",
+    "3": "up",
+  }
   ngOnInit(): void {
+
+
   }
 
 }

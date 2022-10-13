@@ -68,6 +68,7 @@
     .date-priority {
         display: flex;
         flex-direction: column;
+        align-items: stretch;
     }
 
     .card-title {
@@ -77,6 +78,7 @@
 
     .card-description {
         width: unset;
+        text-align: justify;
     }
 
     .card-date {

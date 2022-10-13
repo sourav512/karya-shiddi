@@ -1,5 +1,4 @@
 <div class="container">
-    <app-modal-box *ngIf="showModal" (toggleShowModal)="showModal = !showModal"></app-modal-box>
     <div class="dashboard-name">
         Dashboard
     </div>
@@ -15,19 +14,22 @@
                 <option value=1>Week</option>
                 <option value=2>Month</option>
             </select></span>
-        <span><i style="color: green;" class="fa-regular fa-circle-check icon"></i> 5 Task Completed </span>
-        <span><i style="color: rgb(103, 103, 103);" class="fa-regular fa-circle-check icon"></i> 15 Task Assigned</span>
+        <span><i style="color: green;" class="fa-regular fa-circle-check icon"></i> {{taskCount.completedTask}} Task
+            Completed </span>
+        <span><i style="color: rgb(103, 103, 103);" class="fa-regular fa-circle-check icon"></i>
+            {{taskCount.totalTask-taskCount.completedTask}} Task Assigned</span>
     </div>
     <div class="task-list">
-        <app-task-list [heading]=" 'My Priority'" (toggleShowModal)="showModal = !showModal">
+        <app-task-list #taskList [heading]=" 'My Priority'" [subHeading]="'(Next 3 day\'s priority)'"
+            (toggleShowModal)="showModal = !showModal" (taskCount)="updateCount($event)">
         </app-task-list>
     </div>
     <div class="task-list">
-        <app-task-list [heading]=" 'My Priority'" (toggleShowModal)="showModal = !showModal">
+        <app-task-list [heading]=" 'Today\'s Task'" (toggleShowModal)="showModal = !showModal">
         </app-task-list>
     </div>
     <div class="task-list">
-        <app-task-list [heading]=" 'My Priority'" (toggleShowModal)="showModal = !showModal">
+        <app-task-list [heading]=" 'Later Task'" (toggleShowModal)="showModal = !showModal">
         </app-task-list>
     </div>
 </div>

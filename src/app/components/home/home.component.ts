@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, ViewChild } from '@angular/core';
+import { TaskListComponent } from '../task-list/task-list.component';
 
 @Component({
   selector: 'app-home',
@@ -8,21 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
   date = new Date();
   showModal: boolean = false;
-  // if (this.hour < 12) {
-  //   this.greetMsg
-  // }
-  greetMsg: string = '';
-  hour: number = parseInt(new Date().toTimeString().slice(0, 2));
-  constructor() {
-    if (this.hour > 17) {
-      this.greetMsg = "Good Evening"
-    } else if (this.hour > 12) {
-      this.greetMsg = "Good Afternoon"
-    } else {
-      this.greetMsg = "Good Morning"
-    }
+  getGreetMsg() {
+    let hour: number = parseInt(new Date().toTimeString().slice(0, 2));
+    return hour > 17 ? "Good Evening" : hour > 12 ? "Good Afternoon" : "Good Morning";
   }
-  task = [{ title: 'hello how are you', description: "this is a description", priority: 3 }];
+  taskCount: any = {
+    completedTask: 0,
+    totalTask: 0
+  };
+
+  updateCount(taskCount: any) {
+    console.log(taskCount)
+    this.taskCount = taskCount;
+  }
+  greetMsg: string = this.getGreetMsg();
+
+  constructor() {
+  }
   ngOnInit(): void {
   }
 

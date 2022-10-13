@@ -3,10 +3,11 @@ $base-color: #c6538c;
 
 * {
     margin: 0;
-    /* transition: 300ms; */
+    transition: 100ms ease-in-out;
     padding: 0;
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 .dashboard-name {

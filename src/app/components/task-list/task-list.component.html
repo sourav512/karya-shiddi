@@ -1,7 +1,10 @@
 <div class="container">
-    <span class="dashboard-name">{{heading}}</span><span style="font-size: 12px;">(next 3 days high priority)</span><i
-        class="fa-solid fa-circle-plus" style="color: green;cursor: pointer;" (click)="changeModalView()"></i>
+    <app-modal-box *ngIf="showModal" (toggleModal)="showModal=false" (updateTask)="getData()">
+    </app-modal-box>
+    <span class="dashboard-name" (click)="getData()">{{heading}}</span><span
+        style="font-size: 12px;">{{subHeading}}</span><i class="fa-solid fa-circle-plus"
+        style="color: green;cursor: pointer;margin-left: 6px;" (click)="showModal = !showModal"></i>
     <div *ngFor="let taskItem of taskList">
-        <app-task [item]="taskItem"></app-task>
+        <app-task [item]="taskItem" (updateTaskData)="getData()"></app-task>
     </div>
 </div>

@@ -11,7 +11,8 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { ModalBoxComponent } from './components/modal-box/modal-box.component';
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { MyTaskComponent } from './my-task/my-task.component';
+import { MyTaskComponent } from './components/my-task/my-task.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +21,8 @@ const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,7 @@ const appRoutes: Routes = [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

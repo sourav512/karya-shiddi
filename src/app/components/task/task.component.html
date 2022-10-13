@@ -1,11 +1,12 @@
 <div class="card">
-    <i [ngStyle]="{'color': item.isCompleted == false?'green':'grey'}" class="fa-regular fa-circle-check card-icon"></i>
+    <i [ngStyle]="{'color': item.isCompleted == false?'grey':'green'}" (click)="markTaskAsComplete()"
+        class="fa-regular fa-circle-check card-icon"></i>
     <div class="title-desciption">
         <p class="card-title">{{item.title}}</p>
         <p class="card-description">{{item.description}}</p>
     </div>
     <div class="date-priority">
         <span class="card-date">{{item.date | date:"dd MMM"}}</span>
-        <span class="card-priority"><i class="fa-solid fa-{{priorityIcon[item.priority-1]}}-long"></i> </span>
+        <span class="card-priority"><i class="fa-solid fa-{{priorityIcons[item.priority.toString()]}}-long"></i> </span>
     </div>
 </div>
